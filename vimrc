@@ -63,14 +63,7 @@ vmap <silent> <leader>d "_d
 nnoremap ' `
 nnoremap ` '
 
-" plugin key bindings
-"nnoremap <F5> :GundoToggle<CR>
-"map <F2> :NERDTreeToggle<CR>
-"map <F3> :call FindInNERDTree()<CR>
-
-" Unmap nerdcommenter's comment-invert, map instead change-inside-surroundings
-"autocmd VimEnter * nunmap <Leader>ci
-"autocmd VimEnter * nmap <script> <silent> <unique> <Leader>ci :ChangeInsideSurrounding<CR>
+let g:tex_flavor='latex'
 
 " filetype specific settings
 autocmd FileType make setlocal noexpandtab
@@ -85,6 +78,7 @@ autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType tex set sw=2
 autocmd BufNewFile,BufRead *.less set filetype=less
 autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
 autocmd BufNewFile,BufRead *.json set filetype=javascript
