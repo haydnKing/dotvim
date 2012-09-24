@@ -64,6 +64,7 @@ nnoremap ' `
 nnoremap ` '
 
 let g:tex_flavor='latex'
+let g:Tex_DefaultTargetFormat='pdf'
 
 " filetype specific settings
 autocmd FileType make setlocal noexpandtab
