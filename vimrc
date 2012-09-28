@@ -57,6 +57,8 @@ let mapleader = ","
 map <silent> <leader><space> ;noh<CR>
 map <F5> :mksession! ~/.vim_session <cr> " Quick write session with F5
 map <F6> :source ~/.vim_session <cr>     " And load session with F6
+map <F7> <Esc>:setlocal spell spelllang=en_gb<CR>
+map <F8> <Esc>:setlocal nospell<CR>
 nnoremap <leader>v V`]
 nmap <silent> <leader>d "_d
 vmap <silent> <leader>d "_d
