@@ -14,10 +14,8 @@ YELLOW="\[\033[0;33m\]"
 GREEN="\[\033[0;32m\]"
 DEFAULT='\[\033[0m\]'
 
-#PS1="$RED\$(date +%H:%M) \w$YELLOW
-\$(parse_git_branch)$GREEN\$ "
+#PS1="$RED\$(date +%H:%M) \w$YELLOW\$(parse_git_branch)$GREEN\$ "
 
 # User specific aliases and functions
-PS1="$RED[\u@\h \W$YELLOW\$(parse_git_branch)$RED]\$
-$DEFAULT"
+PS1="$RED[\u@\h \W$YELLOW\$(parse_git_branch)$RED]\$ $DEFAULT"
 
