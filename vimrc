@@ -51,6 +51,7 @@ set ignorecase
 syntax enable
 set background=dark
 colorscheme solarized
+:highlight Normal ctermfg=fg ctermbg=NONE
 
 " key bindings
 let mapleader = ","
