@@ -17,4 +17,4 @@ DEFAULT='\[\033[0m\]'
 # User specific aliases and functions
 PS1="$RED[\u@\h \W$YELLOW\$(parse_git_branch)$RED]\$ $DEFAULT"
 
-EDITOR="vim"
+export EDITOR="vim"
