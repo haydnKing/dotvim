@@ -18,3 +18,9 @@ DEFAULT='\[\033[0m\]'
 PS1="$RED[\u@\h \W$YELLOW\$(parse_git_branch)$RED]\$ $DEFAULT"
 
 export EDITOR="vim"
+
+#add texlive 2012 to the path if it's installed
+TEXLIVEDIR="/usr/local/texlive/2012/bin/i386-linux"
+if [ -d "$TEXLIVEDIR" ]; then
+    PATH=$TEXLIVEDIR:$PATH
+fi
