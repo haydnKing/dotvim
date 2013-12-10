@@ -58,13 +58,14 @@ let mapleader = ","
 map <silent> <leader><space> ;noh<CR>
 map <C-F5> :mksession! ~/.vim_session <cr> " Quick write session with F5
 map <C-F6> :source ~/.vim_session <cr>     " And load session with F6
-map <F8> <C-O>:setlocal spell spelllang=en_gb<CR>
-map <F9> <C-O>:setlocal nospell<CR>
+map <F10> :setlocal spell spelllang=en_gb<CR>
+map <F9> :setlocal nospell<CR>
 nnoremap <leader>v V`]
 nmap <silent> <leader>d "_d
 vmap <silent> <leader>d "_d
 nnoremap ' `
 nnoremap ` '
+set pastetoggle=<F2>
 
 let g:tex_flavor='latex'
 let g:Tex_DefaultTargetFormat='pdf'
@@ -83,6 +84,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType tex set sw=2
+autocmd FileType tex set spell spelllang=en_gb
 autocmd BufNewFile,BufRead *.less set filetype=less
 autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
 autocmd BufNewFile,BufRead *.json set filetype=javascript
