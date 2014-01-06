@@ -56,6 +56,7 @@ colorscheme solarized
 " key bindings
 let mapleader = ","
 map <silent> <leader><space> ;noh<CR>
+map <F3> :w !detex \| wc -w<CR>
 map <C-F5> :mksession! ~/.vim_session <cr> " Quick write session with F5
 map <C-F6> :source ~/.vim_session <cr>     " And load session with F6
 map <F8> <C-O>:setlocal spell spelllang=en_gb<CR>
