@@ -70,6 +70,7 @@ set pastetoggle=<F2>
 
 let g:tex_flavor='latex'
 let g:Tex_DefaultTargetFormat='pdf'
+let g:Tex_GotoError=0
 
 " filetype specific settings
 autocmd FileType make setlocal noexpandtab
