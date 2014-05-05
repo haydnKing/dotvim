@@ -22,7 +22,7 @@ export EDITOR="vim"
 alias ls="ls --color=always"
 
 #add texlive 2012 to the path if it's installed
-TEXLIVEDIR="/usr/texlive/2012/bin/`uname -m`-linux"
+TEXLIVEDIR="/usr/local/texlive/2013/bin/`uname -m`-linux"
 if [ -d "$TEXLIVEDIR" ]; then
     PATH=$TEXLIVEDIR:$PATH
 fi
