@@ -77,7 +77,7 @@ autocmd FileType make setlocal noexpandtab
 autocmd FileType ruby setlocal softtabstop=2 shiftwidth=2
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType python setlocal noexpandtab shiftwidth=2 tabstop=2
-autocmd FileType python setlocal textwidth=79
+"autocmd FileType python setlocal textwidth=79
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
