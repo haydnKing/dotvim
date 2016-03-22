@@ -20,7 +20,7 @@ set backspace=indent,eol,start
 set mouse=a
 set term=xterm-256color
 set modelines=0
-set textwidth=79
+"set textwidth=79
 set directory=~/.vim/tmp
 
 " appearance
@@ -86,7 +86,7 @@ autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType tex set sw=2
-autocmd FileType tex set spell spelllang=en_gb
+autocmd FileType tex setlocal spell spelllang=en_gb
 autocmd BufNewFile,BufRead *.less set filetype=less
 autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
 autocmd BufNewFile,BufRead *.json set filetype=javascript

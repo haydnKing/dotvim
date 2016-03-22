@@ -26,3 +26,10 @@ TEXLIVEDIR="/usr/local/texlive/2013/bin/`uname -m`-linux"
 if [ -d "$TEXLIVEDIR" ]; then
     PATH=$TEXLIVEDIR:$PATH
 fi
+
+#jhbuild
+PATH=$PATH:~/.local/bin
+
+#virtualenvs
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
