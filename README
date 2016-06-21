@@ -3,4 +3,6 @@ My vim files.
 Setup:
     
     $ ln -s vimrc ~/.vimrc
-    $ git submodule update --init
+    $ ln -s bashrc ~/.bashrc
+    run :PluginInstall
+    Build YouCompleteMe, as per https://github.com/Valloric/YouCompleteMe
