@@ -30,6 +30,16 @@ fi
 #jhbuild
 PATH=$PATH:~/.local/bin
 
+#Synthace
+export GOPATH=~/go 
+PATH=$PATH:~/go/bin 
+alias anthapath='cd $GOPATH/src/github.com/antha-lang/antha'
+alias anthabuild='cd $GOPATH/src/github.com/antha-lang/antha
+make
+go get github.com/antha-lang/antha/cmd/...
+cd -'
+alias workflows='cd $GOPATH/src/github.com/antha-lang/antha/antha/examples/workflows'
+
 #virtualenvs
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/share/virtualenvwrapper/virtualenvwrapper.sh

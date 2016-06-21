@@ -92,6 +92,7 @@ autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
 autocmd BufNewFile,BufRead *.json set filetype=javascript
 autocmd BufNewFile,BufRead *.json set tw=0
 autocmd BufNewFile,BufRead *.ebnf set filetype=ebnf
+autocmd BufNewFile,BufRead *.an set filetype=go
 
 " supertab
 let g:SuperTabDefaultCompletionType = "context"
