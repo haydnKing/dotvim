@@ -23,8 +23,12 @@ Plugin 'jistr/vim-nerdtree-tabs'
 "airline
 Plugin 'vim-airline/vim-airline'
 
-"YouCompleteMe
-Plugin 'Valloric/YouCompleteMe'
+"vim-go
+Plugin 'fatih/vim-go'
+
+"neocomplete
+Plugin 'Shougo/neocomplete.vim'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -48,6 +52,7 @@ set smartcase
 set ignorecase
 
 " behaviour
+set number  
 set backspace=indent,eol,start
 set mouse=a
 set term=xterm-256color
@@ -89,3 +94,34 @@ map <Leader>n <plug>NERDTreeTabsToggle<CR>
 " Recognise antha files as golang
 autocmd BufNewFile,BufRead *.an set filetype=go
 
+"vim-go
+let g:go_disable_autoinstall = 0
+" Highlight
+let g:go_highlight_functions = 1  
+let g:go_highlight_methods = 1  
+let g:go_highlight_structs = 1  
+let g:go_highlight_operators = 1  
+let g:go_highlight_build_constraints = 1
+
+"neocomplete
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#data_directory = '~/.vim/.neocomplete'
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#enable_fuzzy_completion = 1
+
+" <TAB>: completion.
+  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ neocomplete#start_manual_complete()
+  function! s:check_back_space() "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+  endfunction"}}}
+"if !exists('g:neocomplete#sources#omni#functions')
+"    let g:neocomplete#sources#omni#functions = {}
+"endif
+"if !exists('g:neocomplete#sources#omni#input_patterns')
+"    let g:neocomplete#sources#omni#input_patterns = {}
+"endif
+" Go (plugin: gocode)
+"let g:neocomplete#sources#omni#functions.go = 'gocomplete#Complete'
