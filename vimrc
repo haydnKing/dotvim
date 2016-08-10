@@ -26,6 +26,9 @@ Plugin 'vim-airline/vim-airline'
 "vim-go
 Plugin 'fatih/vim-go'
 
+"vim-clang
+Plugin 'justmao945/vim-clang'
+
 "neocomplete
 Plugin 'Shougo/neocomplete.vim'
 
@@ -117,11 +120,15 @@ let g:neocomplete#enable_fuzzy_completion = 1
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
   endfunction"}}}
-"if !exists('g:neocomplete#sources#omni#functions')
-"    let g:neocomplete#sources#omni#functions = {}
-"endif
-"if !exists('g:neocomplete#sources#omni#input_patterns')
-"    let g:neocomplete#sources#omni#input_patterns = {}
-"endif
-" Go (plugin: gocode)
-"let g:neocomplete#sources#omni#functions.go = 'gocomplete#Complete'
+
+" disable auto completion for vim-clang
+let g:clang_auto = 0
+" default 'longest' can not work with neocomplete
+let g:clang_c_completeopt = 'menuone'
+let g:clang_cpp_completeopt = 'menuone'
+if !exists('g:neocomplete#force_omni_input_patterns')
+        let g:neocomplete#force_omni_input_patterns = {}
+endif
+" for c and c++
+let g:neocomplete#force_omni_input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
