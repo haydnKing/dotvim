@@ -32,6 +32,17 @@ Plugin 'justmao945/vim-clang'
 "neocomplete
 Plugin 'Shougo/neocomplete.vim'
 
+"Folding
+Plugin 'Konfekt/FastFold'
+
+"indentpython
+Plugin 'vim-scripts/indentpython.vim'
+
+"Syntax
+Plugin 'scrooloose/syntastic'
+
+"PEP8 check
+Plugin 'nvie/vim-flake8'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -87,6 +98,20 @@ map <F10> :setlocal spell spelllang=en_gb<CR>
 map <F9> :setlocal nospell<CR>
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 
+"split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+" Enable folding with the spacebar
+nnoremap <space> za
+" Show docstrings
+let g:SimpylFold_docstring_preview=1
+
 " latex 
 " let g:tex_flavor='latex'
 " let g:Tex_DefaultTargetFormat='pdf'
@@ -132,3 +157,25 @@ endif
 " for c and c++
 let g:neocomplete#force_omni_input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
 let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+
+"PEP8 Python indentation
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix |
+"python highlighting
+let python_highlight_all=1
+
+"python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
