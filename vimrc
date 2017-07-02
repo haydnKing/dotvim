@@ -163,15 +163,20 @@ au BufNewFile,BufRead *.py
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
-    \ set textwidth=79 |
+    \ highlight OverLength ctermbg=darkred ctermfg=white guibg=#592929 |
+    \ match OverLength /\%>80v.\+/ |
+    \ set colorcolumn=80 |
     \ set expandtab |
     \ set autoindent |
     \ set fileformat=unix |
 "python highlighting
 let python_highlight_all=1
 
+
+
+
 "python with virtualenv support
-py << EOF
+py3 << EOF
 import os
 import sys
 if 'VIRTUAL_ENV' in os.environ:
