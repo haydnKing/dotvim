@@ -17,9 +17,12 @@ DEFAULT='\[\033[0m\]'
 # User specific aliases and functions
 PS1="$RED[\u@\h \W$YELLOW\$(parse_git_branch)$RED]\$ $DEFAULT"
 
-export EDITOR="vim"
+export EDITOR="nvim"
 
-#alias ls="ls --color=always"
+#colourfull command line
+export CLICOLOR=1
+
+alias vim="nvim"
 
 #add texlive 2012 to the path if it's installed
 TEXLIVEDIR="/usr/local/texlive/2013/bin/`uname -m`-linux"
@@ -40,6 +43,3 @@ go get github.com/antha-lang/antha/cmd/...
 cd -'
 alias workflows='cd $GOPATH/src/github.com/antha-lang/antha/antha/examples/workflows'
 
-#virtualenvs
-export WORKON_HOME=$HOME/.virtualenvs
-source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
