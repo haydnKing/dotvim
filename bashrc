@@ -19,7 +19,7 @@ PS1="$RED[\u@\h \W$YELLOW\$(parse_git_branch)$RED]\$ $DEFAULT"
 
 export EDITOR="vim"
 
-alias ls="ls --color=always"
+#alias ls="ls --color=always"
 
 #add texlive 2012 to the path if it's installed
 TEXLIVEDIR="/usr/local/texlive/2013/bin/`uname -m`-linux"
