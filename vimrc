@@ -21,8 +21,11 @@ endif
 
 Plug 'altercation/vim-colors-solarized'
 
-" On-demand loading
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Initialize plugin system
 call plug#end()
@@ -59,8 +62,26 @@ set visualbell
 set nofoldenable
 set ruler
 
-" Powerline appearance
-let Powerline_symbols = "unicode"
+
+" NERDTree settings
+
+" Auto start NERD tree when opening a directory
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | wincmd p | endif
+
+" Auto start NERD tree if no files are specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | exe 'NERDTree' | endif
+
+" Let quit work as expected if after entering :q the only window left open is NERD Tree itself
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+let NERDTreeQuitOnOpen = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+"toggle with space
+nnoremap <silent> <Space> :NERDTreeToggle<CR>
+
 
 " searching
 set hlsearch
@@ -69,6 +90,8 @@ set showmatch
 set smartcase
 set ignorecase
 
+set number
+
 " colors
 syntax enable
 set background=dark
@@ -76,7 +99,7 @@ colorscheme solarized
 :highlight Normal ctermfg=fg ctermbg=NONE
 
 " key bindings
-let mapleader = ","
+let mapleader = ";"
 map <silent> <leader><space> ;noh<CR>
 map <F3> :w !detex \| wc -w<CR>
 map <C-F5> :mksession! ~/.vim_session <cr> " Quick write session with F5
@@ -98,5 +121,5 @@ let g:Tex_GotoError=0
 autocmd FileType make setlocal noexpandtab
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType python setlocal noexpandtab shiftwidth=2 tabstop=2
-
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
