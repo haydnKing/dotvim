@@ -36,10 +36,41 @@ PATH=$PATH:~/.local/bin
 #Synthace
 export GOPATH=~/go 
 PATH=$PATH:~/go/bin 
-alias anthapath='cd $GOPATH/src/github.com/antha-lang/antha'
-alias anthabuild='cd $GOPATH/src/github.com/antha-lang/antha
-make
-go get github.com/antha-lang/antha/cmd/...
-cd -'
-alias workflows='cd $GOPATH/src/github.com/antha-lang/antha/antha/examples/workflows'
 
+
+# Kubernetes
+KUBEPS1=""
+if [ -x `which kubectl` ]; then
+  KUBEPS1=' \[\033[01;38;5;214m\](k8s:$(kubectl config current-context))'
+
+  if [ -x `which whiptail` ]; then
+    # Handy function to quickly switch kubernetes context, they can be a pain otherwise...
+    function kc() {
+      values=$(kubectl config get-contexts -o name | sort)
+      selection=$(echo $values | xargs -n 1 | awk '{print v++,$1}')
+      arr=($values)
+      tmpfile=$(mktemp)
+      whiptail --menu "Please select a kubernetes context:" 25 75 12 $selection 2>$tmpfile
+      choice=$(cat $tmpfile)
+      rm -rf $tmpfile
+
+      if [ "XXX$choice" != "XXX" ]; then
+        kubectl config use-context ${arr[choice]}
+      fi
+    }
+  fi
+
+  alias ks='kubectl config current-context'
+fi
+
+#antha compile
+alias ac='antha compile $GOPATH/src/repos.antha.com/antha-ninja/elements-westeros --outdir vendor/repos.antha.com/elements --outputPackage repos.antha.com/elements'
+
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/hjk/Workspace/google-cloud-sdk/path.bash.inc' ]; then source '/Users/hjk/Workspace/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/hjk/Workspace/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/hjk/Workspace/google-cloud-sdk/completion.bash.inc'; fi

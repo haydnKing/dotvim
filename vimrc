@@ -79,6 +79,15 @@ let NERDTreeQuitOnOpen = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
+set splitbelow
+set splitright
+
+"More natural split manipulation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 "toggle with space
 nnoremap <silent> <Space> :NERDTreeToggle<CR>
 
@@ -94,6 +103,7 @@ set number
 
 " colors
 syntax enable
+autocmd BufEnter * :syntax sync fromstart
 set background=dark
 colorscheme solarized
 :highlight Normal ctermfg=fg ctermbg=NONE
@@ -117,9 +127,19 @@ let g:tex_flavor='latex'
 let g:Tex_DefaultTargetFormat='pdf'
 let g:Tex_GotoError=0
 
+" go stuff
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_operators = 1
+  let g:go_fmt_options = {
+    \ 'gofmt': '-s',
+    \ }
+
+
 " filetype specific settings
 autocmd FileType make setlocal noexpandtab
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType python setlocal noexpandtab shiftwidth=2 tabstop=2
 autocmd Filetype gitcommit setlocal spell textwidth=72
+let g:python3_host_prog = '/Users/hjk/.pyenv/versions/neovim3/bin/python'
 
