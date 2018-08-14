@@ -65,6 +65,10 @@ fi
 
 #antha compile
 alias ac='antha compile $GOPATH/src/repos.antha.com/antha-ninja/elements-westeros --outdir vendor/repos.antha.com/elements --outputPackage repos.antha.com/elements'
+#antha run
+PipetMax() {
+    antha run --driver go://github.com/Synthace/PipetMaxDriver/server "$@"
+}
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
