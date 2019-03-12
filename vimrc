@@ -134,6 +134,7 @@ let g:go_highlight_operators = 1
   let g:go_fmt_options = {
     \ 'gofmt': '-s',
     \ }
+nnoremap gr :GoReferrers<CR>
 
 
 " filetype specific settings
