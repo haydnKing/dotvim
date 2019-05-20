@@ -131,6 +131,7 @@ let g:Tex_GotoError=0
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_operators = 1
+let g:go_def_mode='godef'
   let g:go_fmt_options = {
     \ 'gofmt': '-s',
     \ }
@@ -143,4 +144,5 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType python setlocal noexpandtab shiftwidth=2 tabstop=2
 autocmd Filetype gitcommit setlocal spell textwidth=72
 let g:python3_host_prog = '/Users/hjk/.pyenv/versions/neovim3/bin/python'
-
+" Ali: to indent json files on save
+com! JSON %!python -m json.tool
