@@ -8,16 +8,16 @@ set nocompatible
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Make sure you use single quotes
-Plug 'fatih/vim-go' " Amazing combination of features.
-Plug 'godoctor/godoctor.vim' " Some refactoring tools
-if !has('nvim')
- Plug 'maralla/completor.vim' " or whichever you use
-endif
-if has('nvim')
- Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
- Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}
- Plug 'jodosha/vim-godebug' " Debugger integration via delve
-endif
+
+" Go specific {
+    Plug 'fatih/vim-go', {'for': 'go'}
+    let g:go_metalinter_autosave = 0
+    let editor_name='vim'
+    if has('nvim')
+        let editor_name='nvim'
+    endif
+    Plug 'godoctor/godoctor.vim', {'for': 'go'} " Gocode refactoring tool
+" }
 
 Plug 'altercation/vim-colors-solarized'
 
@@ -29,9 +29,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Initialize plugin system
 call plug#end()
-
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
 
 " tabs and indentation
 set tabstop=4
@@ -131,12 +128,12 @@ let g:Tex_GotoError=0
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_operators = 1
-let g:go_def_mode='godef'
+let g:go_def_mode = 'gopls'
+let g:go_info_mode = 'gopls'
   let g:go_fmt_options = {
     \ 'gofmt': '-s',
     \ }
 nnoremap gr :GoReferrers<CR>
-
 
 " filetype specific settings
 autocmd FileType make setlocal noexpandtab
@@ -146,3 +143,7 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 let g:python3_host_prog = '/Users/hjk/.pyenv/versions/neovim3/bin/python'
 " Ali: to indent json files on save
 com! JSON %!python -m json.tool
+
+" omnicomplete with ctrl-space
+inoremap <C-Space> <C-x><C-o>
+inoremap <C-@> <C-Space>
