@@ -9,15 +9,20 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Make sure you use single quotes
 
-" Go specific {
-    Plug 'fatih/vim-go', {'for': 'go'}
-    let g:go_metalinter_autosave = 0
-    let editor_name='vim'
-    if has('nvim')
-        let editor_name='nvim'
-    endif
-    Plug 'godoctor/godoctor.vim', {'for': 'go'} " Gocode refactoring tool
-" }
+" A dependency of 'ncm2'.
+Plug 'roxma/nvim-yarp'
+
+" v2 of the nvim-completion-manager.
+Plug 'ncm2/ncm2'
+
+" LanguageClient
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+" (Optional) Multi-entry selection UI. < for Language Client
+Plug 'junegunn/fzf'
 
 Plug 'altercation/vim-colors-solarized'
 
@@ -26,6 +31,10 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+Plug 'OmniSharp/omnisharp-vim'
+
+Plug 'mileszs/ack.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -87,6 +96,7 @@ nnoremap <C-H> <C-W><C-H>
 
 "toggle with space
 nnoremap <silent> <Space> :NERDTreeToggle<CR>
+nnoremap <silent> <C-Space> :NERDTreeFind<CR>
 
 
 " searching
@@ -124,17 +134,6 @@ let g:tex_flavor='latex'
 let g:Tex_DefaultTargetFormat='pdf'
 let g:Tex_GotoError=0
 
-" go stuff
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_operators = 1
-let g:go_def_mode = 'gopls'
-let g:go_info_mode = 'gopls'
-  let g:go_fmt_options = {
-    \ 'gofmt': '-s',
-    \ }
-nnoremap gr :GoReferrers<CR>
-
 " filetype specific settings
 autocmd FileType make setlocal noexpandtab
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -142,8 +141,53 @@ autocmd FileType python setlocal noexpandtab shiftwidth=2 tabstop=2
 autocmd Filetype gitcommit setlocal spell textwidth=72
 let g:python3_host_prog = '/Users/hjk/.pyenv/versions/neovim3/bin/python'
 " Ali: to indent json files on save
-com! JSON %!python -m json.tool
+com! JSON %!jq '.'
 
-" omnicomplete with ctrl-space
+" completion
+autocmd BufEnter  *  call ncm2#enable_for_buffer()
+
+" Affects the visual representation of what happens after you hit <C-x><C-o>
+" https://neovim.io/doc/user/insert.html#i_CTRL-X_CTRL-O
+" https://neovim.io/doc/user/options.html#'completeopt'
+"
+" This will show the popup menu even if there's only one match (menuone),
+" prevent automatic selection (noselect) and prevent automatic text injection
+" into the current line (noinsert).
+set completeopt=noinsert,menuone,noselect
+
+" complete with ctrl-space
 inoremap <C-Space> <C-x><C-o>
 inoremap <C-@> <C-Space>
+
+" LanguageClient configuration
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+" Launch gopls when Go files are in use
+let g:LanguageClient_serverCommands = {
+       \ 'go': ['gopls', '-logfile', '/tmp/gopls.log', '-rpc.trace', '--debug=localhost:6060']
+       \ }
+let g:LanguageClient_changeThrottle = 1.5
+" Run gofmt and goimports on save
+autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+com! GoFmt %!gofmt -s
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> gr :call LanguageClient#textDocument_references()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+" C-Sharp
+let g:OmniSharp_server_stdio = 1
+autocmd BufWritePre *.cs exec 'OmniSharpCodeFormat'
+
+" ag / ack
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+cnoreabbrev ag Ack                                                                           
+cnoreabbrev aG Ack                                                                           
+cnoreabbrev Ag Ack                                                                           
+cnoreabbrev AG Ack

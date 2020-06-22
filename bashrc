@@ -35,8 +35,9 @@ PATH=$PATH:~/.local/bin
 
 #Synthace
 export GOPATH=~/go 
+export GOPRIVATE=github.com/Synthace
 PATH=$PATH:~/go/bin 
-
+PATH=$PATH:~/src/arcanist/bin/
 
 # Kubernetes
 KUBEPS1=""
@@ -81,3 +82,9 @@ if [ -f '/Users/hjk/Workspace/google-cloud-sdk/path.bash.inc' ]; then source '/U
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/hjk/Workspace/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/hjk/Workspace/google-cloud-sdk/completion.bash.inc'; fi
+
+# apparently install software on mac involves editing bashrc
+
+PATH=/Applications/MiniZincIDE.app/Contents/Resources:$PATH
+
+export MINIZINC_PATH=/Applications/MiniZincIDE.app/Contents/Resources/minizinc
