@@ -64,15 +64,8 @@ if [ -x `which kubectl` ]; then
   alias ks='kubectl config current-context'
 fi
 
-#antha compile
-alias ac='antha compile $GOPATH/src/repos.antha.com/antha-ninja/elements-westeros --outdir vendor/repos.antha.com/elements --outputPackage repos.antha.com/elements'
-#antha run
-PipetMax() {
-    antha run --driver go://github.com/Synthace/instruction-plugins/PipetMax "$@"
-}
-Hamilton() {
-    antha run --driver go://github.com/Synthace/instruction-plugins/Hamilton "$@"
-}
+#don't fail element tests due to open files
+ulimit -S -n 2048
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
@@ -88,3 +81,19 @@ if [ -f '/Users/hjk/Workspace/google-cloud-sdk/completion.bash.inc' ]; then sour
 PATH=/Applications/MiniZincIDE.app/Contents/Resources:$PATH
 
 export MINIZINC_PATH=/Applications/MiniZincIDE.app/Contents/Resources/minizinc
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

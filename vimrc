@@ -36,6 +36,14 @@ Plug 'OmniSharp/omnisharp-vim'
 
 Plug 'mileszs/ack.vim'
 
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'jparise/vim-graphql'
+
+Plug 'ajorgensen/vim-markdown-toc'
+
 " Initialize plugin system
 call plug#end()
 
@@ -105,6 +113,8 @@ set incsearch
 set showmatch
 set smartcase
 set ignorecase
+" search for currently selected
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 set number
 
@@ -166,7 +176,8 @@ set hidden
 
 " Launch gopls when Go files are in use
 let g:LanguageClient_serverCommands = {
-       \ 'go': ['gopls', '-logfile', '/tmp/gopls.log', '-rpc.trace', '--debug=localhost:6060']
+       \ 'go': ['gopls', '-logfile', '/tmp/gopls.log', '-rpc.trace', '--debug=localhost:6060'],
+      \ 'typescriptreact': ['typescript-language-server', '--stdio']
        \ }
 let g:LanguageClient_changeThrottle = 1.5
 " Run gofmt and goimports on save
