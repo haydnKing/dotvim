@@ -149,7 +149,7 @@ autocmd FileType make setlocal noexpandtab
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType python setlocal noexpandtab shiftwidth=2 tabstop=2
 autocmd Filetype gitcommit setlocal spell textwidth=72
-let g:python3_host_prog = '/Users/hjk/.pyenv/versions/neovim3/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
 " Ali: to indent json files on save
 com! JSON %!jq '.'
 

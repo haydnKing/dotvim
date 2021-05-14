@@ -5,6 +5,10 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+if [ -f ~/.vim/git-completion.bash ]; then
+  . ~/.vim/git-completion.bash
+fi
+
 parse_git_branch() {
       git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
     }
@@ -39,36 +43,9 @@ export GOPRIVATE=github.com/Synthace
 PATH=$PATH:~/go/bin 
 PATH=$PATH:~/src/arcanist/bin/
 
-# Kubernetes
-KUBEPS1=""
-if [ -x `which kubectl` ]; then
-  KUBEPS1=' \[\033[01;38;5;214m\](k8s:$(kubectl config current-context))'
-
-  if [ -x `which whiptail` ]; then
-    # Handy function to quickly switch kubernetes context, they can be a pain otherwise...
-    function kc() {
-      values=$(kubectl config get-contexts -o name | sort)
-      selection=$(echo $values | xargs -n 1 | awk '{print v++,$1}')
-      arr=($values)
-      tmpfile=$(mktemp)
-      whiptail --menu "Please select a kubernetes context:" 25 75 12 $selection 2>$tmpfile
-      choice=$(cat $tmpfile)
-      rm -rf $tmpfile
-
-      if [ "XXX$choice" != "XXX" ]; then
-        kubectl config use-context ${arr[choice]}
-      fi
-    }
-  fi
-
-  alias ks='kubectl config current-context'
-fi
-
 #don't fail element tests due to open files
 ulimit -S -n 2048
 
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/hjk/Workspace/google-cloud-sdk/path.bash.inc' ]; then source '/Users/hjk/Workspace/google-cloud-sdk/path.bash.inc'; fi
@@ -76,22 +53,18 @@ if [ -f '/Users/hjk/Workspace/google-cloud-sdk/path.bash.inc' ]; then source '/U
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/hjk/Workspace/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/hjk/Workspace/google-cloud-sdk/completion.bash.inc'; fi
 
-# apparently install software on mac involves editing bashrc
-
-PATH=/Applications/MiniZincIDE.app/Contents/Resources:$PATH
-
-export MINIZINC_PATH=/Applications/MiniZincIDE.app/Contents/Resources/minizinc
+export MINIZINC_PATH=/home/haydn/src/MiniZincIDE-2.5.5-bundle-linux-x86_64/bin/minizinc
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/haydn/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    if [ -f "/home/haydn/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/haydn/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
+        export PATH="/home/haydn/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
