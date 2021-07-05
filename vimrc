@@ -44,6 +44,8 @@ Plug 'jparise/vim-graphql'
 
 Plug 'ajorgensen/vim-markdown-toc'
 
+Plug 'stevearc/vim-arduino'
+
 " Initialize plugin system
 call plug#end()
 
