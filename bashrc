@@ -28,6 +28,8 @@ export CLICOLOR=1
 
 alias vim="nvim"
 
+alias ghclean='git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch\^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done'
+
 #add texlive 2012 to the path if it's installed
 TEXLIVEDIR="/usr/local/texlive/2013/bin/`uname -m`-linux"
 if [ -d "$TEXLIVEDIR" ]; then
@@ -47,13 +49,7 @@ PATH=$PATH:~/src/arcanist/bin/
 ulimit -S -n 2048
 
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/hjk/Workspace/google-cloud-sdk/path.bash.inc' ]; then source '/Users/hjk/Workspace/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/hjk/Workspace/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/hjk/Workspace/google-cloud-sdk/completion.bash.inc'; fi
-
-export MINIZINC_PATH=/home/haydn/src/MiniZincIDE-2.5.5-bundle-linux-x86_64/bin/minizinc
+PATH=$PATH:/home/haydn/src/MiniZincIDE-2.5.5-bundle-linux-x86_64/bin/
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -70,3 +66,11 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/haydn/src/google-cloud-sdk/path.bash.inc' ]; then . '/home/haydn/src/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/haydn/src/google-cloud-sdk/completion.bash.inc' ]; then . '/home/haydn/src/google-cloud-sdk/completion.bash.inc'; fi
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
