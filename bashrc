@@ -34,9 +34,9 @@ fi
 PATH=$PATH:~/.local/bin
 
 #Synthace
-export GOPATH=~/go 
+export GOPATH=~/go
 export GOPRIVATE=github.com/Synthace
-PATH=$PATH:~/go/bin 
+PATH=$PATH:/usr/local/go/bin:~/go/bin
 PATH=$PATH:~/src/arcanist/bin/
 
 # Kubernetes
