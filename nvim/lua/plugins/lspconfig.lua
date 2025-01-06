@@ -1,23 +1,24 @@
 return {
-  "neovim/nvim-lspconfig",
-  opts = {
-    -- make sure mason installs the server
-    servers = {
-      ---@type lspconfig.options.tsserver
-      tsserver = {
-        settings = {
-          typescript = {
-            preferences = {
-              importModuleSpecifier = "project-relative",
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        vtsls = {
+          settings = {
+            typescript = {
+              preferences = {
+                includeCompletionsForModuleExports = true,
+                includeCompletionsForImportStatements = true,
+                importModuleSpecifier = "non-relative",
+              },
             },
-          },
-          javascript = {
-            preferences = {
-              importModuleSpecifier = "project-relative",
+            javascript = {
+              preferences = {
+                includeCompletionsForModuleExports = true,
+                includeCompletionsForImportStatements = true,
+                importModuleSpecifier = "non-relative",
+              },
             },
-          },
-          completions = {
-            completeFunctionCalls = true,
           },
         },
       },
