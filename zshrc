@@ -38,7 +38,7 @@ precmd() {
     print -P '%B%~%b \${vcs_info_msg_0_}'
 }
 
-PROMPT='%B%(!.#.$)%b '
+PROMPT='%B%F{grey}%(!.#.$)%f%b '
 
 alias vim="nvim"
 
@@ -64,6 +64,9 @@ alias rmsquashed='git checkout -q master && git for-each-ref refs/heads/ "--form
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
 setopt SHARE_HISTORY             # Share history between all sessions.
