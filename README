@@ -1,6 +1,1 @@
 My vim files.
-
-Setup:
-    
-    $ ln -s vimrc ~/.vimrc
-    $ git submodule update --init
