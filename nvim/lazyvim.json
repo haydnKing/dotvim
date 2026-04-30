@@ -1,9 +1,13 @@
 {
   "extras": [
-
+    "lazyvim.plugins.extras.formatting.prettier",
+    "lazyvim.plugins.extras.lang.markdown",
+    "lazyvim.plugins.extras.lang.tailwind",
+    "lazyvim.plugins.extras.linting.eslint"
   ],
+  "install_version": 7,
   "news": {
-    "NEWS.md": "10960"
+    "NEWS.md": "11866"
   },
-  "version": 7
+  "version": 8
 }

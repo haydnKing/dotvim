@@ -104,3 +104,5 @@ if [ -f '/home/haydn/src/google-cloud-sdk/completion.bash.inc' ]; then . '/home/
 
 # delete squash-merged branches
 alias rmsquashed='git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse "$branch^{tree}") -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
