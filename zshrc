@@ -35,10 +35,10 @@ setopt prompt_subst
 
 precmd() {
     vcs_info
-    print -P '%B%~%b \${vcs_info_msg_0_}'
+    print -P '%F{green}>%f %B%~%b \${vcs_info_msg_0_}'
 }
 
-PROMPT='%B%F{grey}%(!.#.$)%f%b '
+PROMPT='%F{green}>%f %B%F{grey}%(!.#.$)%f%b '
 
 alias vim="nvim"
 
